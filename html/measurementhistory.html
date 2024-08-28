@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home IOT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="..\css\style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+
+        <div class="logosmarthome">
+            <img src="../img/smart-home.png" alt="logosmarthome" id="smart_home_logo">
+            <div> 
+                <h2>Smart Home Tracking</h2>
+            </div>
+        </div>
+
+        <div class="menubar">
+            <ul class="ulmenu">
+                <li id="dashboard">
+                    <img src="../img/dashboard.png" alt="logosmarthome" class="logomenu">
+                    <a href="iotdashboard.html">Dashboard</a>
+                </li>
+                <li id="measurementhistory">
+                    <img src="../img/speedometer.png" alt="logosmarthome" class="logomenu">
+                    <a href="measurementhistory.html">Measurement Data</a>
+                </li>
+                <li id="Control Device History">
+                    <img src="../img/fan.png" alt="logosmarthome" class="logomenu">
+                    <a href="controldevice.html">Control Device Data</a>
+                </li>
+                <li id="userpage">
+                    <img src="../img/man.png" alt="logosmarthome" class="logomenu">
+                    <a href="profile.html">My profile</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="social-container">
+            <ul>
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <li><i class="fa-brands fa-square-instagram"></i></li>
+                <li><i class="fa-brands fa-square-threads"></i></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="main-container">
+        <div class="nav-menu">
+            <ul>
+                <li><i class="fa-solid fa-bell"></i></li>
+                <li id="name">Đào Tùng Lâm</li>
+                <li><img src="../img/ceo.jpg" alt="" id="user"></li>
+            </ul>
+        </div>
+
+        <div class="main-analyis">
+
+            <div class="tool-bar">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="search-tool" placeholder="Search....">
+                </div>
+            </div>
+
+            
+            <div class="table-data">
+                <table id="table-of-test">
+                    <thead>
+                        <tr>
+                            <th>Mã Cảm Biến</th>
+                            <th>Nhiệt Độ (°C)</th>
+                            <th>Độ ẩm (%)</th>
+                            <th>Ánh sáng </th>
+                            <th>Thời Gian</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-test">
+                        <script>
+                            const sensorData = [
+                                { 'Mã Cảm Biến': 'Sensor-1', 'Nhiệt Độ (°C)': '20.45', 'Độ ẩm (%)': '45.23', 'Ánh sáng (lux)': 78, 'Thời Gian': '2024-08-26T14:23:45.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-2', 'Nhiệt Độ (°C)': '18.67', 'Độ ẩm (%)': '41.56', 'Ánh sáng (lux)': 92, 'Thời Gian': '2024-08-26T14:25:12.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-3', 'Nhiệt Độ (°C)': '22.35', 'Độ ẩm (%)': '50.22', 'Ánh sáng (lux)': 88, 'Thời Gian': '2024-08-26T14:27:30.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-4', 'Nhiệt Độ (°C)': '21.12', 'Độ ẩm (%)': '47.67', 'Ánh sáng (lux)': 66, 'Thời Gian': '2024-08-26T14:30:05.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-5', 'Nhiệt Độ (°C)': '19.87', 'Độ ẩm (%)': '42.33', 'Ánh sáng (lux)': 55, 'Thời Gian': '2024-08-26T14:32:50.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-6', 'Nhiệt Độ (°C)': '17.54', 'Độ ẩm (%)': '49.88', 'Ánh sáng (lux)': 80, 'Thời Gian': '2024-08-26T14:35:20.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-7', 'Nhiệt Độ (°C)': '23.09', 'Độ ẩm (%)': '43.71', 'Ánh sáng (lux)': 102, 'Thời Gian': '2024-08-26T14:37:35.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-8', 'Nhiệt Độ (°C)': '20.11', 'Độ ẩm (%)': '44.88', 'Ánh sáng (lux)': 72, 'Thời Gian': '2024-08-26T14:40:10.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-9', 'Nhiệt Độ (°C)': '21.65', 'Độ ẩm (%)': '46.14', 'Ánh sáng (lux)': 95, 'Thời Gian': '2024-08-26T14:42:45.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-10', 'Nhiệt Độ (°C)': '18.99', 'Độ ẩm (%)': '48.22', 'Ánh sáng (lux)': 67, 'Thời Gian': '2024-08-26T14:45:30.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-11', 'Nhiệt Độ (°C)': '22.01', 'Độ ẩm (%)': '45.78', 'Ánh sáng (lux)': 83, 'Thời Gian': '2024-08-26T14:48:05.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-12', 'Nhiệt Độ (°C)': '20.45', 'Độ ẩm (%)': '41.89', 'Ánh sáng (lux)': 76, 'Thời Gian': '2024-08-26T14:50:40.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-13', 'Nhiệt Độ (°C)': '19.32', 'Độ ẩm (%)': '50.11', 'Ánh sáng (lux)': 64, 'Thời Gian': '2024-08-26T14:53:20.000Z' },
+                                { 'Mã Cảm Biến': 'Sensor-14', 'Nhiệt Độ (°C)': '17.88', 'Độ ẩm (%)': '47.54', 'Ánh sáng (lux)': 91, 'Thời Gian': '2024-08-26T14:55:50.000Z' },
+                            ];
+
+
+
+                            function populateTable(data) {
+                                const tbody = document.getElementById('table-test');
+                                tbody.innerHTML = ''; // Xóa nội dung cũ nếu có
+                                data.forEach(item => {
+                                    const row = document.createElement('tr');
+                                    for (const key in item) {
+                                        if (item.hasOwnProperty(key)) {
+                                            const cell = document.createElement('td');
+                                            cell.textContent = item[key];
+                                            row.appendChild(cell);
+                                        }
+                                    }
+                                    tbody.appendChild(row);
+                                });
+                            }
+
+                            document.addEventListener('DOMContentLoaded', function() {
+                                populateTable(sensorData);
+                            });
+                        </script>
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="../js/main.js"></script>
+</body>
+</html>

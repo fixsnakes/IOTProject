@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home IOT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="..\css\style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+
+        <div class="logosmarthome">
+            <img src="../img/smart-home.png" alt="logosmarthome" id="smart_home_logo">
+            <div> 
+                <h2>Smart Home Tracking</h2>
+            </div>
+        </div>
+
+        <div class="menubar">
+            <ul class="ulmenu">
+                <li id="dashboard">
+                    <img src="../img/dashboard.png" alt="logosmarthome" class="logomenu">
+                    <a href="iotdashboard.html">Dashboard</a>
+                </li>
+                <li id="measurementhistory">
+                    <img src="../img/speedometer.png" alt="logosmarthome" class="logomenu">
+                    <a href="measurementhistory.html">Measurement Data</a>
+                </li>
+                <li id="Control Device History">
+                    <img src="../img/fan.png" alt="logosmarthome" class="logomenu">
+                    <a href="controldevice.html">Control Device Data</a>
+                </li>
+                <li id="userpage">
+                    <img src="../img/man.png" alt="logosmarthome" class="logomenu">
+                    <a href="profile.html">My profile</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="social-container">
+            <ul>
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <li><i class="fa-brands fa-square-instagram"></i></li>
+                <li><i class="fa-brands fa-square-threads"></i></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="main-container">
+        <div class="nav-menu">
+            <ul>
+                <li><i class="fa-solid fa-bell"></i></li>
+                <li id="name">Đào Tùng Lâm</li>
+                <li><img src="../img/ceo.jpg" alt="" id="user"></li>
+            </ul>
+        </div>
+
+        <div class="main-analyis">
+            <div class="tool-bar">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="search-tool" placeholder="Search....">
+                </div>
+            </div>
+
+            <div class="table-data">
+                <table id="table-of-test">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Thiết Bị</th>
+                            <th>Hành Động</th>
+                            <th>Thời Gian</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-test">
+                        <script>
+                            // Mảng dữ liệu mẫu
+                            const actionsData = [
+                                { 'STT': 1, 'Thiết Bị': 'Điều hòa', 'Hành Động': 'Bật', 'Thời Gian': '2024-08-26T14:23:45.000Z' },
+                                { 'STT': 2, 'Thiết Bị': 'Đèn', 'Hành Động': 'Tắt', 'Thời Gian': '2024-08-26T14:25:12.000Z' },
+                                { 'STT': 3, 'Thiết Bị': 'Quạt', 'Hành Động': 'Bật', 'Thời Gian': '2024-08-26T14:27:30.000Z' },
+                                { 'STT': 4, 'Thiết Bị': 'Điều hòa', 'Hành Động': 'Tắt', 'Thời Gian': '2024-08-26T14:30:05.000Z' },
+                                { 'STT': 5, 'Thiết Bị': 'Đèn', 'Hành Động': 'Bật', 'Thời Gian': '2024-08-26T14:32:50.000Z' },
+                                { 'STT': 6, 'Thiết Bị': 'Quạt', 'Hành Động': 'Tắt', 'Thời Gian': '2024-08-26T14:35:20.000Z' },
+                                { 'STT': 7, 'Thiết Bị': 'Điều hòa', 'Hành Động': 'Bật', 'Thời Gian': '2024-08-26T14:37:35.000Z' },
+                                { 'STT': 8, 'Thiết Bị': 'Đèn', 'Hành Động': 'Tắt', 'Thời Gian': '2024-08-26T14:40:10.000Z' },
+                                { 'STT': 9, 'Thiết Bị': 'Quạt', 'Hành Động': 'Bật', 'Thời Gian': '2024-08-26T14:42:45.000Z' },
+                                { 'STT': 10, 'Thiết Bị': 'Điều hòa', 'Hành Động': 'Tắt', 'Thời Gian': '2024-08-26T14:45:30.000Z' },
+                                { 'STT': 11, 'Thiết Bị': 'Đèn', 'Hành Động': 'Bật', 'Thời Gian': '2024-08-26T14:48:05.000Z' },
+                                { 'STT': 12, 'Thiết Bị': 'Quạt', 'Hành Động': 'Tắt', 'Thời Gian': '2024-08-26T14:50:40.000Z' },
+                                { 'STT': 13, 'Thiết Bị': 'Điều hòa', 'Hành Động': 'Bật', 'Thời Gian': '2024-08-26T14:53:20.000Z' },
+                                { 'STT': 14, 'Thiết Bị': 'Đèn', 'Hành Động': 'Tắt', 'Thời Gian': '2024-08-26T14:55:50.000Z' },
+                                { 'STT': 15, 'Thiết Bị': 'Quạt', 'Hành Động': 'Bật', 'Thời Gian': '2024-08-26T14:58:25.000Z' },
+                                { 'STT': 16, 'Thiết Bị': 'Điều hòa', 'Hành Động': 'Tắt', 'Thời Gian': '2024-08-26T15:01:00.000Z' },
+                                { 'STT': 17, 'Thiết Bị': 'Đèn', 'Hành Động': 'Bật', 'Thời Gian': '2024-08-26T15:03:35.000Z' },
+                
+                         ];
+                    
+                            // Hàm để tạo các hàng trong bảng
+                            function populateTable(data) {
+                                const tbody = document.getElementById('table-test');
+                                tbody.innerHTML = ''; // Xóa nội dung cũ nếu có
+                                data.forEach(item => {
+                                    const row = document.createElement('tr');
+                                    for (const key in item) {
+                                        if (item.hasOwnProperty(key)) {
+                                            const cell = document.createElement('td');
+                                            cell.textContent = item[key];
+                                            row.appendChild(cell);
+                                        }
+                                    }
+                                    tbody.appendChild(row);
+                                });
+                            }
+                    
+                            // Đảm bảo hàm populateTable được gọi khi DOM đã được tải xong
+                            populateTable(actionsData);
+             
+                        </script>
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="../js/main.js"></script>
+</body>
+</html>

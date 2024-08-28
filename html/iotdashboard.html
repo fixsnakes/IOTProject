@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home IOT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="..\css\style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+
+        <div class="logosmarthome">
+            <img src="../img/smart-home.png" alt="logosmarthome" id="smart_home_logo">
+            <div> 
+                <h2>Smart Home Tracking</h2>
+            </div>
+        </div>
+
+        <div class="menubar">
+            <ul class="ulmenu">
+                <li id="dashboard">
+                    <img src="../img/dashboard.png" alt="logosmarthome" class="logomenu">
+                    <a href="iotdashboard.html">Dashboard</a>
+                </li>
+                <li id="measurementhistory">
+                    <img src="../img/speedometer.png" alt="logosmarthome" class="logomenu">
+                    <a href="measurementhistory.html">Measurement Data</a>
+                </li>
+                <li id="Control Device History">
+                    <img src="../img/fan.png" alt="logosmarthome" class="logomenu">
+                    <a href="controldevice.html">Control Device Data</a>
+                </li>
+                <li id="userpage">
+                    <img src="../img/man.png" alt="logosmarthome" class="logomenu">
+                    <a href="profile.html">My profile</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="social-container">
+            <ul>
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <li><i class="fa-brands fa-square-instagram"></i></li>
+                <li><i class="fa-brands fa-square-threads"></i></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="main-container">
+        <div class="nav-menu">
+            <ul>
+                <li><i class="fa-solid fa-bell"></i></li>
+                <li id="name">Đào Tùng Lâm</li>
+                <li><img src="../img/ceo.jpg" alt="" id="user"></li>
+            </ul>
+        </div>
+
+        <div class="main-analyis">
+            <div class="inforA">
+                <div class="cambien">
+
+
+                    <div class="detail-info">
+
+                        <img src="../img/cold.png" alt="temperature" class="picDetail">
+                        <p id="description">Temperature</p>
+
+                    </div>
+                   
+                    <p class="numberdetail" id="numberoftemp">48 °C</p>
+                </div>
+                
+                <div class="cambien">
+                    <div class="detail-info">
+                        <img src="../img/humidity.png" alt="humidity" class="picDetail">
+                        <p id="description">Humidity</p>
+                    </div>
+                    <p class="numberdetail" id="numberofhumid">48 %</p>
+                </div>
+                <div class="cambien">
+                    <div class="detail-info">
+                        <img src="../img/light-bulb.png" alt="light" class="picDetail">
+                        <p id="description">Light</p>
+                    </div>
+                    <p class="numberdetail" id="numberoflight">11</p>
+                </div>
+            </div>
+
+
+            <div class="inforB">
+                <div class="chartcontainer">
+
+                    <canvas id="myChart"></canvas>
+                    
+                </div>
+
+
+                <div class="devicecontainer">
+                    <div class="device" id="aircondition">
+                        <img src="../img/air-conditioner.gif" alt="aircondition">
+
+
+
+                        <p id="status-air">Status: OFF</p>
+
+                        <div class="button">
+                            <button class="onbutton" id="air-on">ON</button>
+                            <button class="offbutton" id="air-off">OFF</button>
+                        </div>
+                        
+
+
+                    </div>
+                    <div class="device" id="lightroom">
+                        <img src="../img/light-bulb.gif" alt="lightroom">
+                        <p id="status-light">Status: OFF</p>
+
+                        <div class="button">
+                            <button class="onbutton" id="light-on">ON</button>
+                            <button class="offbutton" id="light-off">OFF</button>
+                        </div>
+                    </div>
+                    <div class="device" id="fan">
+                        <img src="../img/fan.gif" alt="fan">
+                        <p id="status-fan">Status: OFF</p>
+                        <div class="button">
+                            <button class="onbutton" id="fan-on">ON</button>
+                            <button class="offbutton" id="fan-off">OFF</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <script src="../js/main.js"></script>
+</body>
+</html>
